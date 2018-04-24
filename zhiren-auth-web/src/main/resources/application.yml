@@ -6,7 +6,7 @@ zhiren:
     show: true
     basePackage: cn.zhiren.auth.web
 server:
-  port: 8100
+  port: 8080
 spring:
       redis:
           host: 192.168.159.128
@@ -46,4 +46,3 @@ pagehelper:
       supportMethodsArguments: true
       params: count=countSql
 
-debug: true

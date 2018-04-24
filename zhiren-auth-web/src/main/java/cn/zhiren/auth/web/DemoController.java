@@ -1,13 +1,14 @@
 package cn.zhiren.auth.web;
 
-import cn.zhiren.core.DTO.BaseRespDTO;
-import cn.zhiren.core.DTO.ResultStatus;
 import cn.zhiren.auth.dto.DemoDTO;
 import cn.zhiren.auth.service.DemoService;
+import cn.zhiren.core.DTO.BaseRespDTO;
+import cn.zhiren.core.DTO.ResultStatus;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.concurrent.CompletableFuture;
  */
 @Api(value = "测试", description = "仅仅用于测试")
 @RestController
+@Secured({"ROLE_SOMEROLE"})
 public class DemoController {
 
     @Autowired
@@ -30,7 +32,7 @@ public class DemoController {
      * @return
      */
     @ApiOperation(value="插入demo", notes="插入demo信息")
-    @RequestMapping(value = "/setDemo",method = RequestMethod.POST)
+    @RequestMapping(value = "/api/setDemo",method = RequestMethod.POST)
     public CompletableFuture<BaseRespDTO<String>> setDemo(@RequestBody DemoDTO dto){
         return  CompletableFuture.supplyAsync(() -> {
             demoService.setDemo(dto);
@@ -46,7 +48,7 @@ public class DemoController {
     * @return:  * @param null
     */
     @ApiOperation(value="更新demo", notes="更新demo信息")
-    @RequestMapping(value = "/updateDemo",method = RequestMethod.PUT)
+    @RequestMapping(value = "/api/updateDemo",method = RequestMethod.PUT)
     public CompletableFuture<BaseRespDTO<String>> updateDemo(@RequestBody DemoDTO dto){
         return  CompletableFuture.supplyAsync(() -> {
             demoService.updateDemo(dto);
@@ -55,7 +57,7 @@ public class DemoController {
     }
 
     @ApiOperation(value="删除demo", notes="根据code删除demo")
-    @RequestMapping(value = "/deleteDemo/{code}",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/api/deleteDemo/{code}",method = RequestMethod.DELETE)
     public CompletableFuture<BaseRespDTO<String>> deleteDemo(@PathVariable String code){
         return  CompletableFuture.supplyAsync(() -> {
             demoService.deleteDemo(code);
@@ -72,7 +74,7 @@ public class DemoController {
     */
     @ApiOperation(value="根据名称获得用户信息", notes="根据url的name来获取用户详细信息")
     @ApiImplicitParam(name = "name", value = "用户名称", required = true, dataType = "String", paramType = "path")
-    @RequestMapping(value = "/getDemos/{name}",method = RequestMethod.GET)
+    @RequestMapping(value = "/api/getDemos/{name}",method = RequestMethod.GET)
     public CompletableFuture<BaseRespDTO<List<DemoDTO>>> getDemos(@PathVariable String name){
         return  CompletableFuture.supplyAsync(()->{
            List<DemoDTO> demoDTOS = demoService.getDemos(name);
