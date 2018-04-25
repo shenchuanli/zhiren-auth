@@ -19,6 +19,8 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
+    int accessTokenValiditySeconds = 3600;
+
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -32,15 +34,16 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .authorizedGrantTypes("client_credentials", "refresh_token")
                 .scopes("select")
                 .authorities("oauth2")
-                .secret("123456")
+                .secret("123456").accessTokenValiditySeconds(accessTokenValiditySeconds)
                 .and().withClient("client_2")
                 .authorizedGrantTypes("password", "refresh_token")
                 .scopes("select")
                 .authorities("oauth2")
-                .secret("123456")
+                .secret("123456").accessTokenValiditySeconds(accessTokenValiditySeconds)
                 .and().withClient("client_3") // client_id
                 .secret("secret") // client_secret
                 .authorizedGrantTypes("authorization_code") // 该client允许的授权类型
+                .authorities("oauth2").accessTokenValiditySeconds(accessTokenValiditySeconds)
                 .scopes("app"); // 允许的授权范围
     }
 

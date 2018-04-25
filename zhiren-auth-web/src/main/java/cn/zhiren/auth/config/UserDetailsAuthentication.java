@@ -17,6 +17,9 @@ import java.util.HashSet;
  */
 @Component
 public class UserDetailsAuthentication implements UserDetailsService {
+    //@Autowired
+    //private PasswordEncoder passwordEncoder;
+
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
         if ("123456".equalsIgnoreCase(name)) {
@@ -29,6 +32,7 @@ public class UserDetailsAuthentication implements UserDetailsService {
     private User mockUser() {
         Collection<GrantedAuthority> authorities = new HashSet<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_SOMEROLE"));
+
         User user = new User("123456","123456",authorities);
         return user;
     }
