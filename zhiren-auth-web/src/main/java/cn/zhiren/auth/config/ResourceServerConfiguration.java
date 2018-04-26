@@ -1,5 +1,6 @@
 package cn.zhiren.auth.config;
 
+import cn.zhiren.auth.filter.JWTAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -12,6 +13,7 @@ import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * Created by Solley
@@ -52,7 +54,8 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     public void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/api/**").authenticated();//配置order访问控制，必须认证过后才可以访问
-
+                .antMatchers("/api/**").authenticated()//;//配置order访问控制，必须认证过后才可以访问
+                .and().addFilterBefore(new JWTAuthenticationFilter(),
+                UsernamePasswordAuthenticationFilter.class);;//配置order访问控制，必须认证过后才可以访问
     }
 }

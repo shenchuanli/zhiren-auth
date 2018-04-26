@@ -1,5 +1,6 @@
 package cn.zhiren.auth.config;
 
+import cn.zhiren.auth.auth.UserDetailsAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

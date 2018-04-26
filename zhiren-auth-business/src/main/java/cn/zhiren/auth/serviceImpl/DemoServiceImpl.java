@@ -3,7 +3,7 @@ package cn.zhiren.auth.serviceImpl;
 import cn.zhiren.auth.config.ZhiRenConfig;
 import cn.zhiren.auth.dto.DemoDTO;
 import cn.zhiren.auth.mapper.DemoMapper;
-import cn.zhiren.auth.model.Demo;
+import cn.zhiren.auth.po.Demo;
 import cn.zhiren.auth.service.DemoService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;

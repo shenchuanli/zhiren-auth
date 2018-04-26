@@ -1,4 +1,4 @@
-package cn.zhiren.auth.model;
+package cn.zhiren.auth.po;
 
 public class Demo {
     private Integer id;

@@ -1,5 +1,7 @@
 package cn.zhiren.auth.config;
 
+import cn.zhiren.auth.auth.ClientDetailAuthentication;
+import cn.zhiren.auth.auth.UserDetailsAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,15 +23,40 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
     int accessTokenValiditySeconds = 3600;
 
+    /**
+    * @Author:Solley
+    * @Description:权限管理
+    * @Date: 2018/4/26 21:19
+    * @param:
+    * @return:  * @param null
+    */
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    /**
+    * @Author:Solley
+    * @Description:用户验证
+    * @Date: 2018/4/26 21:19
+    * @param:
+    * @return:  * @param null
+    */
     @Autowired
     private UserDetailsAuthentication userDetailsAuthentication;
 
+    /**
+    * @Author:Solley
+    * @Description: 客户端验证
+    * @Date 21:18
+    * @param:
+    * @return:  * @param null
+    */
+    @Autowired
+    public ClientDetailAuthentication clientDetailAuthentication;
+
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        //配置两个客户端,一个用于password认证一个用于client认证
+        //clients.withClientDetails(clientDetailAuthentication);
+        //配置三个客户端,一个用于password认证一个用于client认证，一个授权码认证
         clients.inMemory().withClient("client_1")
                 .authorizedGrantTypes("client_credentials", "refresh_token")
                 .scopes("select")

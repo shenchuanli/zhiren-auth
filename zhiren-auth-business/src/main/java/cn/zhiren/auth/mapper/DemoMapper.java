@@ -1,6 +1,6 @@
 package cn.zhiren.auth.mapper;
 
-import cn.zhiren.auth.model.Demo;
+import cn.zhiren.auth.po.Demo;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package cn.zhiren.auth.config;
+package cn.zhiren.auth.auth;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

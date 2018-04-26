@@ -38,7 +38,7 @@ spring:
           useGlobalDataSourceStat : true
 mybatis:
     mapper-locations: classpath:mapping/*.xml
-    type-aliases-package: cn.zhiren.auth.model
+    type-aliases-package: cn.zhiren.auth.po
 #pagehelper分页插件
 pagehelper:
       helperDialect: mysql

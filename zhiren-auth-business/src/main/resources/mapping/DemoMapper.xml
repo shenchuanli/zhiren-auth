@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.zhiren.auth.mapper.DemoMapper" >
-  <resultMap id="BaseResultMap" type="cn.zhiren.auth.model.Demo" >
+  <resultMap id="BaseResultMap" type="cn.zhiren.auth.po.Demo" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="code" property="code" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
@@ -34,13 +34,13 @@
     delete from Demo
     where code = #{code,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="cn.zhiren.auth.model.Demo" >
+  <insert id="insert" parameterType="cn.zhiren.auth.po.Demo" >
     insert into Demo (id, code, name
       )
     values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="cn.zhiren.auth.model.Demo" >
+  <insert id="insertSelective" parameterType="cn.zhiren.auth.po.Demo" >
     insert into Demo
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -65,7 +65,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.zhiren.auth.model.Demo" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.zhiren.auth.po.Demo" >
     update Demo
     <set >
       <if test="code != null" >
@@ -77,7 +77,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.zhiren.auth.model.Demo" >
+  <update id="updateByPrimaryKey" parameterType="cn.zhiren.auth.po.Demo" >
     update Demo
     set code = #{code,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR}
