@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.zhiren.auth.mapper.AuthClientRoleRelationshipMapper" >
+  <resultMap id="BaseResultMap" type="cn.zhiren.auth.po.AuthClientRoleRelationship" >
+    <id column="ClientRoleId" property="clientroleid" jdbcType="VARCHAR" />
+    <result column="ClientId" property="clientid" jdbcType="VARCHAR" />
+    <result column="RoleId" property="roleid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ClientRoleId, ClientId, RoleId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from AuthClientRoleRelationship
+    where ClientRoleId = #{clientroleid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from AuthClientRoleRelationship
+    where ClientRoleId = #{clientroleid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.zhiren.auth.po.AuthClientRoleRelationship" >
+    insert into AuthClientRoleRelationship (ClientRoleId, ClientId, RoleId
+      )
+    values (#{clientroleid,jdbcType=VARCHAR}, #{clientid,jdbcType=VARCHAR}, #{roleid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.zhiren.auth.po.AuthClientRoleRelationship" >
+    insert into AuthClientRoleRelationship
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="clientroleid != null" >
+        ClientRoleId,
+      </if>
+      <if test="clientid != null" >
+        ClientId,
+      </if>
+      <if test="roleid != null" >
+        RoleId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="clientroleid != null" >
+        #{clientroleid,jdbcType=VARCHAR},
+      </if>
+      <if test="clientid != null" >
+        #{clientid,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.zhiren.auth.po.AuthClientRoleRelationship" >
+    update AuthClientRoleRelationship
+    <set >
+      <if test="clientid != null" >
+        ClientId = #{clientid,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null" >
+        RoleId = #{roleid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ClientRoleId = #{clientroleid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.zhiren.auth.po.AuthClientRoleRelationship" >
+    update AuthClientRoleRelationship
+    set ClientId = #{clientid,jdbcType=VARCHAR},
+      RoleId = #{roleid,jdbcType=VARCHAR}
+    where ClientRoleId = #{clientroleid,jdbcType=VARCHAR}
+  </update>
+</mapper>

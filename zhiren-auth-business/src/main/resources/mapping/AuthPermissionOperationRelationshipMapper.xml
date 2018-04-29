@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.zhiren.auth.mapper.AuthPermissionOperationRelationshipMapper" >
+  <resultMap id="BaseResultMap" type="cn.zhiren.auth.po.AuthPermissionOperationRelationship" >
+    <id column="PermissionOperation" property="permissionoperation" jdbcType="VARCHAR" />
+    <result column="PermissionId" property="permissionid" jdbcType="VARCHAR" />
+    <result column="OperationId" property="operationid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PermissionOperation, PermissionId, OperationId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from AuthPermissionOperationRelationship
+    where PermissionOperation = #{permissionoperation,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from AuthPermissionOperationRelationship
+    where PermissionOperation = #{permissionoperation,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.zhiren.auth.po.AuthPermissionOperationRelationship" >
+    insert into AuthPermissionOperationRelationship (PermissionOperation, PermissionId, 
+      OperationId)
+    values (#{permissionoperation,jdbcType=VARCHAR}, #{permissionid,jdbcType=VARCHAR}, 
+      #{operationid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.zhiren.auth.po.AuthPermissionOperationRelationship" >
+    insert into AuthPermissionOperationRelationship
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="permissionoperation != null" >
+        PermissionOperation,
+      </if>
+      <if test="permissionid != null" >
+        PermissionId,
+      </if>
+      <if test="operationid != null" >
+        OperationId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="permissionoperation != null" >
+        #{permissionoperation,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionid != null" >
+        #{permissionid,jdbcType=VARCHAR},
+      </if>
+      <if test="operationid != null" >
+        #{operationid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.zhiren.auth.po.AuthPermissionOperationRelationship" >
+    update AuthPermissionOperationRelationship
+    <set >
+      <if test="permissionid != null" >
+        PermissionId = #{permissionid,jdbcType=VARCHAR},
+      </if>
+      <if test="operationid != null" >
+        OperationId = #{operationid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PermissionOperation = #{permissionoperation,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.zhiren.auth.po.AuthPermissionOperationRelationship" >
+    update AuthPermissionOperationRelationship
+    set PermissionId = #{permissionid,jdbcType=VARCHAR},
+      OperationId = #{operationid,jdbcType=VARCHAR}
+    where PermissionOperation = #{permissionoperation,jdbcType=VARCHAR}
+  </update>
+</mapper>

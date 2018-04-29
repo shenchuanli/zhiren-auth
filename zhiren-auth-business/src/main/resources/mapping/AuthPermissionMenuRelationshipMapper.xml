@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.zhiren.auth.mapper.AuthPermissionMenuRelationshipMapper" >
+  <resultMap id="BaseResultMap" type="cn.zhiren.auth.po.AuthPermissionMenuRelationship" >
+    <id column="PermissionMenuId" property="permissionmenuid" jdbcType="VARCHAR" />
+    <result column="MenuId" property="menuid" jdbcType="VARCHAR" />
+    <result column="PermissionId" property="permissionid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PermissionMenuId, MenuId, PermissionId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from AuthPermissionMenuRelationship
+    where PermissionMenuId = #{permissionmenuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from AuthPermissionMenuRelationship
+    where PermissionMenuId = #{permissionmenuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.zhiren.auth.po.AuthPermissionMenuRelationship" >
+    insert into AuthPermissionMenuRelationship (PermissionMenuId, MenuId, PermissionId
+      )
+    values (#{permissionmenuid,jdbcType=VARCHAR}, #{menuid,jdbcType=VARCHAR}, #{permissionid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.zhiren.auth.po.AuthPermissionMenuRelationship" >
+    insert into AuthPermissionMenuRelationship
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="permissionmenuid != null" >
+        PermissionMenuId,
+      </if>
+      <if test="menuid != null" >
+        MenuId,
+      </if>
+      <if test="permissionid != null" >
+        PermissionId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="permissionmenuid != null" >
+        #{permissionmenuid,jdbcType=VARCHAR},
+      </if>
+      <if test="menuid != null" >
+        #{menuid,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionid != null" >
+        #{permissionid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.zhiren.auth.po.AuthPermissionMenuRelationship" >
+    update AuthPermissionMenuRelationship
+    <set >
+      <if test="menuid != null" >
+        MenuId = #{menuid,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionid != null" >
+        PermissionId = #{permissionid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PermissionMenuId = #{permissionmenuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.zhiren.auth.po.AuthPermissionMenuRelationship" >
+    update AuthPermissionMenuRelationship
+    set MenuId = #{menuid,jdbcType=VARCHAR},
+      PermissionId = #{permissionid,jdbcType=VARCHAR}
+    where PermissionMenuId = #{permissionmenuid,jdbcType=VARCHAR}
+  </update>
+</mapper>

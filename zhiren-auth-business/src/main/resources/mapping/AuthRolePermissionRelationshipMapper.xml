@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.zhiren.auth.mapper.AuthRolePermissionRelationshipMapper" >
+  <resultMap id="BaseResultMap" type="cn.zhiren.auth.po.AuthRolePermissionRelationship" >
+    <id column="RolePermissionId" property="rolepermissionid" jdbcType="VARCHAR" />
+    <result column="RoleId" property="roleid" jdbcType="VARCHAR" />
+    <result column="Permission" property="permission" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    RolePermissionId, RoleId, Permission
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from AuthRolePermissionRelationship
+    where RolePermissionId = #{rolepermissionid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from AuthRolePermissionRelationship
+    where RolePermissionId = #{rolepermissionid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.zhiren.auth.po.AuthRolePermissionRelationship" >
+    insert into AuthRolePermissionRelationship (RolePermissionId, RoleId, Permission
+      )
+    values (#{rolepermissionid,jdbcType=VARCHAR}, #{roleid,jdbcType=VARCHAR}, #{permission,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.zhiren.auth.po.AuthRolePermissionRelationship" >
+    insert into AuthRolePermissionRelationship
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rolepermissionid != null" >
+        RolePermissionId,
+      </if>
+      <if test="roleid != null" >
+        RoleId,
+      </if>
+      <if test="permission != null" >
+        Permission,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rolepermissionid != null" >
+        #{rolepermissionid,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null" >
+        #{permission,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.zhiren.auth.po.AuthRolePermissionRelationship" >
+    update AuthRolePermissionRelationship
+    <set >
+      <if test="roleid != null" >
+        RoleId = #{roleid,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null" >
+        Permission = #{permission,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RolePermissionId = #{rolepermissionid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.zhiren.auth.po.AuthRolePermissionRelationship" >
+    update AuthRolePermissionRelationship
+    set RoleId = #{roleid,jdbcType=VARCHAR},
+      Permission = #{permission,jdbcType=VARCHAR}
+    where RolePermissionId = #{rolepermissionid,jdbcType=VARCHAR}
+  </update>
+</mapper>

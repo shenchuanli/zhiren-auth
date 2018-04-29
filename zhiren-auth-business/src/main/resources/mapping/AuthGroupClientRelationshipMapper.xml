@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.zhiren.auth.mapper.AuthGroupClientRelationshipMapper" >
+  <resultMap id="BaseResultMap" type="cn.zhiren.auth.po.AuthGroupClientRelationship" >
+    <id column="GroupClientId" property="groupclientid" jdbcType="VARCHAR" />
+    <result column="ClientId" property="clientid" jdbcType="VARCHAR" />
+    <result column="GroupId" property="groupid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GroupClientId, ClientId, GroupId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from AuthGroupClientRelationship
+    where GroupClientId = #{groupclientid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from AuthGroupClientRelationship
+    where GroupClientId = #{groupclientid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.zhiren.auth.po.AuthGroupClientRelationship" >
+    insert into AuthGroupClientRelationship (GroupClientId, ClientId, GroupId
+      )
+    values (#{groupclientid,jdbcType=VARCHAR}, #{clientid,jdbcType=VARCHAR}, #{groupid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.zhiren.auth.po.AuthGroupClientRelationship" >
+    insert into AuthGroupClientRelationship
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="groupclientid != null" >
+        GroupClientId,
+      </if>
+      <if test="clientid != null" >
+        ClientId,
+      </if>
+      <if test="groupid != null" >
+        GroupId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="groupclientid != null" >
+        #{groupclientid,jdbcType=VARCHAR},
+      </if>
+      <if test="clientid != null" >
+        #{clientid,jdbcType=VARCHAR},
+      </if>
+      <if test="groupid != null" >
+        #{groupid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.zhiren.auth.po.AuthGroupClientRelationship" >
+    update AuthGroupClientRelationship
+    <set >
+      <if test="clientid != null" >
+        ClientId = #{clientid,jdbcType=VARCHAR},
+      </if>
+      <if test="groupid != null" >
+        GroupId = #{groupid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GroupClientId = #{groupclientid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.zhiren.auth.po.AuthGroupClientRelationship" >
+    update AuthGroupClientRelationship
+    set ClientId = #{clientid,jdbcType=VARCHAR},
+      GroupId = #{groupid,jdbcType=VARCHAR}
+    where GroupClientId = #{groupclientid,jdbcType=VARCHAR}
+  </update>
+</mapper>

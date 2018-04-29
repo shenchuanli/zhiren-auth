@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.zhiren.auth.mapper.AuthOperationMapper" >
+  <resultMap id="BaseResultMap" type="cn.zhiren.auth.po.AuthOperation" >
+    <id column="OperationId" property="operationid" jdbcType="VARCHAR" />
+    <result column="OperationName" property="operationname" jdbcType="VARCHAR" />
+    <result column="OperationCode" property="operationcode" jdbcType="VARCHAR" />
+    <result column="ParentOperationId" property="parentoperationid" jdbcType="VARCHAR" />
+    <result column="InterceptURL" property="intercepturl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    OperationId, OperationName, OperationCode, ParentOperationId, InterceptURL
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from AuthOperation
+    where OperationId = #{operationid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from AuthOperation
+    where OperationId = #{operationid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.zhiren.auth.po.AuthOperation" >
+    insert into AuthOperation (OperationId, OperationName, OperationCode, 
+      ParentOperationId, InterceptURL)
+    values (#{operationid,jdbcType=VARCHAR}, #{operationname,jdbcType=VARCHAR}, #{operationcode,jdbcType=VARCHAR}, 
+      #{parentoperationid,jdbcType=VARCHAR}, #{intercepturl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.zhiren.auth.po.AuthOperation" >
+    insert into AuthOperation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="operationid != null" >
+        OperationId,
+      </if>
+      <if test="operationname != null" >
+        OperationName,
+      </if>
+      <if test="operationcode != null" >
+        OperationCode,
+      </if>
+      <if test="parentoperationid != null" >
+        ParentOperationId,
+      </if>
+      <if test="intercepturl != null" >
+        InterceptURL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="operationid != null" >
+        #{operationid,jdbcType=VARCHAR},
+      </if>
+      <if test="operationname != null" >
+        #{operationname,jdbcType=VARCHAR},
+      </if>
+      <if test="operationcode != null" >
+        #{operationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentoperationid != null" >
+        #{parentoperationid,jdbcType=VARCHAR},
+      </if>
+      <if test="intercepturl != null" >
+        #{intercepturl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.zhiren.auth.po.AuthOperation" >
+    update AuthOperation
+    <set >
+      <if test="operationname != null" >
+        OperationName = #{operationname,jdbcType=VARCHAR},
+      </if>
+      <if test="operationcode != null" >
+        OperationCode = #{operationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentoperationid != null" >
+        ParentOperationId = #{parentoperationid,jdbcType=VARCHAR},
+      </if>
+      <if test="intercepturl != null" >
+        InterceptURL = #{intercepturl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where OperationId = #{operationid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.zhiren.auth.po.AuthOperation" >
+    update AuthOperation
+    set OperationName = #{operationname,jdbcType=VARCHAR},
+      OperationCode = #{operationcode,jdbcType=VARCHAR},
+      ParentOperationId = #{parentoperationid,jdbcType=VARCHAR},
+      InterceptURL = #{intercepturl,jdbcType=VARCHAR}
+    where OperationId = #{operationid,jdbcType=VARCHAR}
+  </update>
+</mapper>

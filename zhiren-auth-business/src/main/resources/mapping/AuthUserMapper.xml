@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.zhiren.auth.mapper.AuthUserMapper" >
+  <resultMap id="BaseResultMap" type="cn.zhiren.auth.po.AuthUser" >
+    <id column="UserId" property="userid" jdbcType="VARCHAR" />
+    <result column="Username" property="username" jdbcType="VARCHAR" />
+    <result column="Displayname" property="displayname" jdbcType="VARCHAR" />
+    <result column="Password" property="password" jdbcType="VARCHAR" />
+    <result column="AccountNonExpired" property="accountnonexpired" jdbcType="BIT" />
+    <result column="AccountNonLocked" property="accountnonlocked" jdbcType="BIT" />
+    <result column="CredentialsNonExpired" property="credentialsnonexpired" jdbcType="BIT" />
+    <result column="IsEnabled" property="isenabled" jdbcType="BIT" />
+    <result column="Createtime" property="createtime" jdbcType="DATE" />
+    <result column="Email" property="email" jdbcType="VARCHAR" />
+    <result column="Phone" property="phone" jdbcType="VARCHAR" />
+    <result column="Sex" property="sex" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    UserId, Username, Displayname, Password, AccountNonExpired, AccountNonLocked, CredentialsNonExpired, 
+    IsEnabled, Createtime, Email, Phone, Sex
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from AuthUser
+    where UserId = #{userid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from AuthUser
+    where UserId = #{userid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.zhiren.auth.po.AuthUser" >
+    insert into AuthUser (UserId, Username, Displayname, 
+      Password, AccountNonExpired, AccountNonLocked, 
+      CredentialsNonExpired, IsEnabled, Createtime, 
+      Email, Phone, Sex)
+    values (#{userid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{displayname,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{accountnonexpired,jdbcType=BIT}, #{accountnonlocked,jdbcType=BIT}, 
+      #{credentialsnonexpired,jdbcType=BIT}, #{isenabled,jdbcType=BIT}, #{createtime,jdbcType=DATE}, 
+      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.zhiren.auth.po.AuthUser" >
+    insert into AuthUser
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        UserId,
+      </if>
+      <if test="username != null" >
+        Username,
+      </if>
+      <if test="displayname != null" >
+        Displayname,
+      </if>
+      <if test="password != null" >
+        Password,
+      </if>
+      <if test="accountnonexpired != null" >
+        AccountNonExpired,
+      </if>
+      <if test="accountnonlocked != null" >
+        AccountNonLocked,
+      </if>
+      <if test="credentialsnonexpired != null" >
+        CredentialsNonExpired,
+      </if>
+      <if test="isenabled != null" >
+        IsEnabled,
+      </if>
+      <if test="createtime != null" >
+        Createtime,
+      </if>
+      <if test="email != null" >
+        Email,
+      </if>
+      <if test="phone != null" >
+        Phone,
+      </if>
+      <if test="sex != null" >
+        Sex,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="displayname != null" >
+        #{displayname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="accountnonexpired != null" >
+        #{accountnonexpired,jdbcType=BIT},
+      </if>
+      <if test="accountnonlocked != null" >
+        #{accountnonlocked,jdbcType=BIT},
+      </if>
+      <if test="credentialsnonexpired != null" >
+        #{credentialsnonexpired,jdbcType=BIT},
+      </if>
+      <if test="isenabled != null" >
+        #{isenabled,jdbcType=BIT},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.zhiren.auth.po.AuthUser" >
+    update AuthUser
+    <set >
+      <if test="username != null" >
+        Username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="displayname != null" >
+        Displayname = #{displayname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        Password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="accountnonexpired != null" >
+        AccountNonExpired = #{accountnonexpired,jdbcType=BIT},
+      </if>
+      <if test="accountnonlocked != null" >
+        AccountNonLocked = #{accountnonlocked,jdbcType=BIT},
+      </if>
+      <if test="credentialsnonexpired != null" >
+        CredentialsNonExpired = #{credentialsnonexpired,jdbcType=BIT},
+      </if>
+      <if test="isenabled != null" >
+        IsEnabled = #{isenabled,jdbcType=BIT},
+      </if>
+      <if test="createtime != null" >
+        Createtime = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="email != null" >
+        Email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        Phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        Sex = #{sex,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UserId = #{userid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.zhiren.auth.po.AuthUser" >
+    update AuthUser
+    set Username = #{username,jdbcType=VARCHAR},
+      Displayname = #{displayname,jdbcType=VARCHAR},
+      Password = #{password,jdbcType=VARCHAR},
+      AccountNonExpired = #{accountnonexpired,jdbcType=BIT},
+      AccountNonLocked = #{accountnonlocked,jdbcType=BIT},
+      CredentialsNonExpired = #{credentialsnonexpired,jdbcType=BIT},
+      IsEnabled = #{isenabled,jdbcType=BIT},
+      Createtime = #{createtime,jdbcType=DATE},
+      Email = #{email,jdbcType=VARCHAR},
+      Phone = #{phone,jdbcType=VARCHAR},
+      Sex = #{sex,jdbcType=VARCHAR}
+    where UserId = #{userid,jdbcType=VARCHAR}
+  </update>
+</mapper>
