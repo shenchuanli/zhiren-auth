@@ -54,6 +54,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     public void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                .antMatchers("/bus/refresh").permitAll()
                 .antMatchers("/api/**").authenticated()//;//配置order访问控制，必须认证过后才可以访问
                 .and().addFilterBefore(new JWTAuthenticationFilter(),
                 UsernamePasswordAuthenticationFilter.class);;//配置order访问控制，必须认证过后才可以访问

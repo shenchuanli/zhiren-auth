@@ -7,6 +7,7 @@ import cn.zhiren.auth.po.Demo;
 import cn.zhiren.auth.service.DemoService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -24,6 +25,13 @@ import java.util.stream.Collectors;
 public class DemoServiceImpl implements DemoService {
 
     @Autowired
+    private AmqpTemplate amqpTemplate;
+ //key：消息名称；content：消息内容
+     public void send(String key,String content) {
+         amqpTemplate.convertAndSend(key, content);
+     }
+
+    @Autowired
     private DemoMapper demoMapper;
 
     @Autowired
@@ -35,6 +43,7 @@ public class DemoServiceImpl implements DemoService {
     @Override
     @CacheEvict(value = "getDemos",allEntries=true)
     public boolean setDemo(DemoDTO dto) {
+        send("queues1","auth hahhahah");
         Random random = new Random(100);
         ModelMapper modelMapper = new ModelMapper();
         Demo demo = modelMapper.map(dto, new TypeToken<Demo>() {
