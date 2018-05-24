@@ -17,6 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 
@@ -43,6 +45,7 @@ public class DemoServiceImpl implements DemoService {
     @Override
     @CacheEvict(value = "getDemos",allEntries=true)
     public boolean setDemo(DemoDTO dto) {
+        Set<Integer> aa = new TreeSet();
         send("queues1","auth hahhahah");
         Random random = new Random(100);
         ModelMapper modelMapper = new ModelMapper();

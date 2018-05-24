@@ -19,6 +19,12 @@
     UserId, Username, Displayname, Password, AccountNonExpired, AccountNonLocked, CredentialsNonExpired, 
     IsEnabled, Createtime, Email, Phone, Sex
   </sql>
+  <select id="selectPageByDisplayname" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from AuthUser
+    where Displayname = #{displayname,jdbcType=VARCHAR}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />

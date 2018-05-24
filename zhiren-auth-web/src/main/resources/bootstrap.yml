@@ -66,4 +66,5 @@ management:
 #      reasonable: true
 #      supportMethodsArguments: true
 #      params: count=countSql
-#
+#      PageRowBounds: true
+
