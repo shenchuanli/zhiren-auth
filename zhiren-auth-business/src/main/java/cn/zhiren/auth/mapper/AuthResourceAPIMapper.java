@@ -1,17 +1,16 @@
 package cn.zhiren.auth.mapper;
 
-import cn.zhiren.auth.po.AuthResourceAPI;
+import cn.zhiren.auth.entity.AuthResourceAPI;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 
-public interface AuthResourceAPIMapper {
-    int deleteByPrimaryKey(String apiid);
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author Solley
+ * @since 2018-08-03
+ */
+public interface AuthResourceAPIMapper extends BaseMapper<AuthResourceAPI> {
 
-    int insert(AuthResourceAPI record);
-
-    int insertSelective(AuthResourceAPI record);
-
-    AuthResourceAPI selectByPrimaryKey(String apiid);
-
-    int updateByPrimaryKeySelective(AuthResourceAPI record);
-
-    int updateByPrimaryKey(AuthResourceAPI record);
 }

@@ -40,6 +40,22 @@
                     <verbose>true</verbose>
                 </configuration>
             </plugin>
+            <!--&lt;!&ndash; 注意!! 如果要支持二级缓存分页使用类 CachePaginationInterceptor 默认、建议如下！！ &ndash;&gt;-->
+            <!--<plugin interceptor="com.baomidou.mybatisplus.plugins.PaginationInterceptor">-->
+                <!--<property name="sqlParser" ref="自定义解析类、可以没有" />-->
+                <!--<property name="localPage" value="默认 false 改为 true 开启了 pageHeper 支持、可以没有" />-->
+                <!--<property name="dialectClazz" value="自定义方言类、可以没有" />-->
+            <!--</plugin>-->
+
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/mapping/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 </project>

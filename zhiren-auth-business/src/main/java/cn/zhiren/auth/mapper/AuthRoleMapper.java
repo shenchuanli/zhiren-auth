@@ -1,17 +1,16 @@
 package cn.zhiren.auth.mapper;
 
-import cn.zhiren.auth.po.AuthRole;
+import cn.zhiren.auth.entity.AuthRole;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 
-public interface AuthRoleMapper {
-    int deleteByPrimaryKey(String roleid);
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author Solley
+ * @since 2018-08-03
+ */
+public interface AuthRoleMapper extends BaseMapper<AuthRole> {
 
-    int insert(AuthRole record);
-
-    int insertSelective(AuthRole record);
-
-    AuthRole selectByPrimaryKey(String roleid);
-
-    int updateByPrimaryKeySelective(AuthRole record);
-
-    int updateByPrimaryKey(AuthRole record);
 }

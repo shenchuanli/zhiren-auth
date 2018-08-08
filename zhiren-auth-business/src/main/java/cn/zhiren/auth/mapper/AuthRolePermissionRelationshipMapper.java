@@ -1,17 +1,16 @@
 package cn.zhiren.auth.mapper;
 
-import cn.zhiren.auth.po.AuthRolePermissionRelationship;
+import cn.zhiren.auth.entity.AuthRolePermissionRelationship;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 
-public interface AuthRolePermissionRelationshipMapper {
-    int deleteByPrimaryKey(String rolepermissionid);
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author Solley
+ * @since 2018-08-03
+ */
+public interface AuthRolePermissionRelationshipMapper extends BaseMapper<AuthRolePermissionRelationship> {
 
-    int insert(AuthRolePermissionRelationship record);
-
-    int insertSelective(AuthRolePermissionRelationship record);
-
-    AuthRolePermissionRelationship selectByPrimaryKey(String rolepermissionid);
-
-    int updateByPrimaryKeySelective(AuthRolePermissionRelationship record);
-
-    int updateByPrimaryKey(AuthRolePermissionRelationship record);
 }

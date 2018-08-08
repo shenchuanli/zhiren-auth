@@ -1,22 +1,16 @@
 package cn.zhiren.auth.mapper;
 
-import cn.zhiren.auth.po.AuthUser;
-import org.apache.ibatis.annotations.Param;
+import cn.zhiren.auth.entity.AuthUser;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 
-import java.util.List;
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author Solley
+ * @since 2018-08-03
+ */
+public interface AuthUserMapper extends BaseMapper<AuthUser> {
 
-public interface AuthUserMapper {
-    int deleteByPrimaryKey(String userid);
-
-    int insert(AuthUser record);
-
-    int insertSelective(AuthUser record);
-
-    AuthUser selectByPrimaryKey(String userid);
-
-    List<AuthUser> selectPageByDisplayname(@Param("displayname")String displayname);//, @Param("pageNum")int pageNumKey, @Param("pageSize")int pageSizeKey);
-
-    int updateByPrimaryKeySelective(AuthUser record);
-
-    int updateByPrimaryKey(AuthUser record);
 }

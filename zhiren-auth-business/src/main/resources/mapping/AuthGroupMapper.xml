@@ -1,71 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.zhiren.auth.mapper.AuthGroupMapper" >
-  <resultMap id="BaseResultMap" type="cn.zhiren.auth.po.AuthGroup" >
-    <id column="GroupId" property="groupid" jdbcType="VARCHAR" />
-    <result column="ParentGroupId" property="parentgroupid" jdbcType="VARCHAR" />
-    <result column="GroupName" property="groupname" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    GroupId, ParentGroupId, GroupName
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from AuthGroup
-    where GroupId = #{groupid,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from AuthGroup
-    where GroupId = #{groupid,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="cn.zhiren.auth.po.AuthGroup" >
-    insert into AuthGroup (GroupId, ParentGroupId, GroupName
-      )
-    values (#{groupid,jdbcType=VARCHAR}, #{parentgroupid,jdbcType=VARCHAR}, #{groupname,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="cn.zhiren.auth.po.AuthGroup" >
-    insert into AuthGroup
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="groupid != null" >
-        GroupId,
-      </if>
-      <if test="parentgroupid != null" >
-        ParentGroupId,
-      </if>
-      <if test="groupname != null" >
-        GroupName,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="groupid != null" >
-        #{groupid,jdbcType=VARCHAR},
-      </if>
-      <if test="parentgroupid != null" >
-        #{parentgroupid,jdbcType=VARCHAR},
-      </if>
-      <if test="groupname != null" >
-        #{groupname,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.zhiren.auth.po.AuthGroup" >
-    update AuthGroup
-    <set >
-      <if test="parentgroupid != null" >
-        ParentGroupId = #{parentgroupid,jdbcType=VARCHAR},
-      </if>
-      <if test="groupname != null" >
-        GroupName = #{groupname,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where GroupId = #{groupid,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="cn.zhiren.auth.po.AuthGroup" >
-    update AuthGroup
-    set ParentGroupId = #{parentgroupid,jdbcType=VARCHAR},
-      GroupName = #{groupname,jdbcType=VARCHAR}
-    where GroupId = #{groupid,jdbcType=VARCHAR}
-  </update>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zhiren.auth.mapper.AuthGroupMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.zhiren.auth.entity.AuthGroup">
+        <id column="GroupId" property="GroupId" />
+        <result column="ParentGroupId" property="ParentGroupId" />
+        <result column="GroupName" property="GroupName" />
+        <result column="GroupType" property="GroupType" />
+        <result column="TenantID" property="TenantID" />
+    </resultMap>
+
 </mapper>

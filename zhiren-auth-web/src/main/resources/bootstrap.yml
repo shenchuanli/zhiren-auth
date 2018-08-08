@@ -1,40 +1,43 @@
-spring:
-      cloud:
-        config:
-          label: master
-          profile: dev
-          discovery:
-            enabled: true
-            service-id: zhiren-config-server
-      application:
-          name: zhiren-auth
-management:
-  endpoint:
-    web:
-      exposure:
-        include: bus-refresh
+##spring:
+##      cloud:
+##        config:
+##          label: master
+##          profile: dev
+##          discovery:
+##            enabled: true
+##            service-id: zhiren-config-server
+##      application:
+##          name: zhiren-auth
+##eureka:
+##  client:
+##    serviceUrl:
+##      defaultZone: http://192.168.232.128:8761/eureka/
+##management:
+##  endpoint:
+##    web:
+##      exposure:
+##        include: bus-refresh
 #zhiren:
 #  druid:
 #    passWord: 123456
 #  swagger:
-#    title: ZhiRenAuth
+#    title: ZhiRenAuth123
 #    show: true
-#    basePackage: cn.zhiren.auth.web
+#    basePackage: cn.zhiren.auth.controller
 #server:
-#  port: 8080
-#eureka:
-#  client:
-#    serviceUrl:
-#      defaultZone: http://localhost:8761/eureka/
+#  port: 8181
 #spring:
+#      rabbitmq:
+#          host: 192.168.232.128
+#          port: 5672
 #      application:
 #          name: zhiren-auth
 #      redis:
-#          host: 192.168.159.128
+#          host: 192.168.232.128
 #          port: 7001
 #      datasource:
 #          name: zhiren
-#          url: jdbc:mysql://192.168.159.128:3306/zhiren?useUnicode=true&characterEncoding=utf8
+#          url: jdbc:mysql://192.168.232.128:3306/zhiren_auth?useUnicode=true&characterEncoding=utf8
 #          username: root
 #          password: 123456
 #          # 使用druid数据源
@@ -57,14 +60,40 @@ management:
 #          maxPoolPreparedStatementPerConnectionSize : 20
 #          connectionProperties : druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
 #          useGlobalDataSourceStat : true
+#mybatis-plus:
+#  mapper-locations: classpath:mapping/*.xml
+#  typeAliasesPackage: cn.zhiren.auth.entity
+##  global-config:
+##    id-type: 2
+##    field-strategy: 2
+##    db-column-underline: true
+##    refresh-mapper: true
+##    #capital-mode: true
+##    #key-generator: com.baomidou.springboot.xxx
+##    logic-delete-value: 0
+##    logic-not-delete-value: 1
+##    sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector
+##    #meta-object-handler: com.baomidou.springboot.xxx
+##    #sql-injector: com.baomidou.springboot.xxx
+##  configuration:
+##    map-underscore-to-camel-case: true
+##    cache-enabled: false
+#  global-config:
+#    id-type: 3  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
+#    db-column-underline: false
+#    refresh-mapper: true
+#  configuration:
+#    map-underscore-to-camel-case: true
+#    cache-enabled: true #配置的缓存的全局开关
+#    lazyLoadingEnabled: true #延时加载的开关
+#    multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
 #mybatis:
 #    mapper-locations: classpath:mapping/*.xml
-#    type-aliases-package: cn.zhiren.auth.po
+#    type-aliases-package: cn.zhiren.auth.entity
 ##pagehelper分页插件
 #pagehelper:
 #      helperDialect: mysql
 #      reasonable: true
 #      supportMethodsArguments: true
 #      params: count=countSql
-#      PageRowBounds: true
-
+#

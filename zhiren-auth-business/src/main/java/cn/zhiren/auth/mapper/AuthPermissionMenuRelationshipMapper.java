@@ -1,17 +1,16 @@
 package cn.zhiren.auth.mapper;
 
-import cn.zhiren.auth.po.AuthPermissionMenuRelationship;
+import cn.zhiren.auth.entity.AuthPermissionMenuRelationship;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 
-public interface AuthPermissionMenuRelationshipMapper {
-    int deleteByPrimaryKey(String permissionmenuid);
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author Solley
+ * @since 2018-08-03
+ */
+public interface AuthPermissionMenuRelationshipMapper extends BaseMapper<AuthPermissionMenuRelationship> {
 
-    int insert(AuthPermissionMenuRelationship record);
-
-    int insertSelective(AuthPermissionMenuRelationship record);
-
-    AuthPermissionMenuRelationship selectByPrimaryKey(String permissionmenuid);
-
-    int updateByPrimaryKeySelective(AuthPermissionMenuRelationship record);
-
-    int updateByPrimaryKey(AuthPermissionMenuRelationship record);
 }

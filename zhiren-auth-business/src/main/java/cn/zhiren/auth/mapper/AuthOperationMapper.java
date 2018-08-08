@@ -1,17 +1,16 @@
 package cn.zhiren.auth.mapper;
 
-import cn.zhiren.auth.po.AuthOperation;
+import cn.zhiren.auth.entity.AuthOperation;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 
-public interface AuthOperationMapper {
-    int deleteByPrimaryKey(String operationid);
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author Solley
+ * @since 2018-08-03
+ */
+public interface AuthOperationMapper extends BaseMapper<AuthOperation> {
 
-    int insert(AuthOperation record);
-
-    int insertSelective(AuthOperation record);
-
-    AuthOperation selectByPrimaryKey(String operationid);
-
-    int updateByPrimaryKeySelective(AuthOperation record);
-
-    int updateByPrimaryKey(AuthOperation record);
 }

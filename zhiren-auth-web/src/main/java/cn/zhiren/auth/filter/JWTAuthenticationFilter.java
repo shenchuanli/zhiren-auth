@@ -1,5 +1,6 @@
 package cn.zhiren.auth.filter;
 
+import cn.zhiren.core.BaseCommon.BaseContextHandler;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -31,10 +32,12 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             Collection<GrantedAuthority> authorities = new ArrayList();
             authorities.addAll(authentication.getAuthorities());
             for(int i = 0; i < authorities.size();i++) {
-                System.out.println(((ArrayList<GrantedAuthority>) authorities).get(i).getAuthority());
+                //System.out.println(((ArrayList<GrantedAuthority>) authorities).get(i).getAuthority());
             }
             authorities.add(new SimpleGrantedAuthority("ROLE_GET"));
-            System.out.println(authentication.getPrincipal());
+            BaseContextHandler.setName(authentication.getPrincipal().toString());
+            //System.out.println(authentication.getPrincipal());
+            httpServletRequest.setAttribute("username", authentication.getPrincipal());
             usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(authentication.getPrincipal(),authentication.getCredentials(),authorities);
         }
         SecurityContextHolder.getContext()

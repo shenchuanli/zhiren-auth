@@ -1,17 +1,16 @@
 package cn.zhiren.auth.mapper;
 
-import cn.zhiren.auth.po.AuthGroupRoleRelationship;
+import cn.zhiren.auth.entity.AuthGroupRoleRelationship;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 
-public interface AuthGroupRoleRelationshipMapper {
-    int deleteByPrimaryKey(String grouproleid);
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author Solley
+ * @since 2018-08-03
+ */
+public interface AuthGroupRoleRelationshipMapper extends BaseMapper<AuthGroupRoleRelationship> {
 
-    int insert(AuthGroupRoleRelationship record);
-
-    int insertSelective(AuthGroupRoleRelationship record);
-
-    AuthGroupRoleRelationship selectByPrimaryKey(String grouproleid);
-
-    int updateByPrimaryKeySelective(AuthGroupRoleRelationship record);
-
-    int updateByPrimaryKey(AuthGroupRoleRelationship record);
 }

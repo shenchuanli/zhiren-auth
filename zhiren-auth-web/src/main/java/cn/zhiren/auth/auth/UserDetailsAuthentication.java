@@ -31,7 +31,7 @@ public class UserDetailsAuthentication implements UserDetailsService {
 
     private User mockUser() {
         Collection<GrantedAuthority> authorities = new HashSet<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_SOMEROLE"));
+        authorities.add(new SimpleGrantedAuthority("ROLE_AUTH_TENANT"));
         authorities.add(new SimpleGrantedAuthority("ROLE_AUTH_USER_ROLE"));
         User user = new User("123456","123456",authorities);
         return user;

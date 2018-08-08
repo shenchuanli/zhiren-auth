@@ -7,12 +7,25 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
+import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.security.oauth2.provider.token.TokenEnhancer;
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
+import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Solley
@@ -57,17 +70,17 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         //clients.withClientDetails(clientDetailAuthentication);
         //配置三个客户端,一个用于password认证一个用于client认证，一个授权码认证
-        clients.inMemory().withClient("client_1")
+        clients.inMemory().withClient("client_credentials")
                 .authorizedGrantTypes("client_credentials", "refresh_token")
                 .scopes("select")
                 .authorities("oauth2")
                 .secret("123456").accessTokenValiditySeconds(accessTokenValiditySeconds)
-                .and().withClient("client_2")
+                .and().withClient("client_password")
                 .authorizedGrantTypes("password", "refresh_token")
                 .scopes("select")
                 .authorities("oauth2")
                 .secret("123456").accessTokenValiditySeconds(accessTokenValiditySeconds)
-                .and().withClient("client_3") // client_id
+                .and().withClient("client_code") // client_id
                 .secret("secret") // client_secret
                 .authorizedGrantTypes("authorization_code") // 该client允许的授权类型
                 .authorities("oauth2").accessTokenValiditySeconds(accessTokenValiditySeconds)
@@ -89,22 +102,35 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
                // .accessTokenConverter(accessTokenConverter());
         // @formatter:on
+        endpoints.tokenStore(tokenStore());
+    }
+
+    /**
+     * token store
+     *
+     * @param
+     * @return
+     */
+    @Bean
+    public TokenStore tokenStore() {
+        TokenStore tokenStore = new JwtTokenStore(accessTokenConverter());
+        return tokenStore;
     }
 
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter() {
-//            @Override
-//            public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
-//                String userName = authentication.getUserAuthentication().getName();
-//                User user = (User) authentication.getUserAuthentication().getPrincipal();
-//                Map<String,Object> infoMap = new HashMap<>();
-////                infoMap.put("userId",userName);
-////                infoMap.put("roles",user.getAuthorities());
-//                ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(infoMap);
-//                OAuth2AccessToken token = super.enhance(accessToken, authentication);
-//                return token;
-//            }
+            @Override
+            public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
+                String userName = authentication.getUserAuthentication().getName();
+                User user = (User) authentication.getUserAuthentication().getPrincipal();
+                Map<String,Object> infoMap = new HashMap<>();
+                infoMap.put("userName",userName);
+                infoMap.put("roles",user.getAuthorities());
+                ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(infoMap);
+                OAuth2AccessToken token = super.enhance(accessToken, authentication);
+                return token;
+            }
         };
         converter.setSigningKey("zhiren123");
         return converter;

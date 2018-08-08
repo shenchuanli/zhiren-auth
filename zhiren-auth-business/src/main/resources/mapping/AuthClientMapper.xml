@@ -1,166 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.zhiren.auth.mapper.AuthClientMapper" >
-  <resultMap id="BaseResultMap" type="cn.zhiren.auth.po.AuthClient" >
-    <id column="ClientId" property="clientid" jdbcType="VARCHAR" />
-    <result column="ResourceIds" property="resourceids" jdbcType="VARCHAR" />
-    <result column="SecretRequired" property="secretrequired" jdbcType="BIT" />
-    <result column="ClientSecret" property="clientsecret" jdbcType="VARCHAR" />
-    <result column="Scoped" property="scoped" jdbcType="BIT" />
-    <result column="Scope" property="scope" jdbcType="VARCHAR" />
-    <result column="AuthorizedGrantTypes" property="authorizedgranttypes" jdbcType="VARCHAR" />
-    <result column="RegisteredRedirectUri" property="registeredredirecturi" jdbcType="VARCHAR" />
-    <result column="AccessTokenValiditySeconds" property="accesstokenvalidityseconds" jdbcType="INTEGER" />
-    <result column="RefreshTokenValiditySeconds" property="refreshtokenvalidityseconds" jdbcType="INTEGER" />
-    <result column="AutoApprove" property="autoapprove" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    ClientId, ResourceIds, SecretRequired, ClientSecret, Scoped, Scope, AuthorizedGrantTypes, 
-    RegisteredRedirectUri, AccessTokenValiditySeconds, RefreshTokenValiditySeconds, AutoApprove
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from AuthClient
-    where ClientId = #{clientid,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from AuthClient
-    where ClientId = #{clientid,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="cn.zhiren.auth.po.AuthClient" >
-    insert into AuthClient (ClientId, ResourceIds, SecretRequired, 
-      ClientSecret, Scoped, Scope, 
-      AuthorizedGrantTypes, RegisteredRedirectUri, 
-      AccessTokenValiditySeconds, RefreshTokenValiditySeconds, 
-      AutoApprove)
-    values (#{clientid,jdbcType=VARCHAR}, #{resourceids,jdbcType=VARCHAR}, #{secretrequired,jdbcType=BIT}, 
-      #{clientsecret,jdbcType=VARCHAR}, #{scoped,jdbcType=BIT}, #{scope,jdbcType=VARCHAR}, 
-      #{authorizedgranttypes,jdbcType=VARCHAR}, #{registeredredirecturi,jdbcType=VARCHAR}, 
-      #{accesstokenvalidityseconds,jdbcType=INTEGER}, #{refreshtokenvalidityseconds,jdbcType=INTEGER}, 
-      #{autoapprove,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="cn.zhiren.auth.po.AuthClient" >
-    insert into AuthClient
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="clientid != null" >
-        ClientId,
-      </if>
-      <if test="resourceids != null" >
-        ResourceIds,
-      </if>
-      <if test="secretrequired != null" >
-        SecretRequired,
-      </if>
-      <if test="clientsecret != null" >
-        ClientSecret,
-      </if>
-      <if test="scoped != null" >
-        Scoped,
-      </if>
-      <if test="scope != null" >
-        Scope,
-      </if>
-      <if test="authorizedgranttypes != null" >
-        AuthorizedGrantTypes,
-      </if>
-      <if test="registeredredirecturi != null" >
-        RegisteredRedirectUri,
-      </if>
-      <if test="accesstokenvalidityseconds != null" >
-        AccessTokenValiditySeconds,
-      </if>
-      <if test="refreshtokenvalidityseconds != null" >
-        RefreshTokenValiditySeconds,
-      </if>
-      <if test="autoapprove != null" >
-        AutoApprove,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="clientid != null" >
-        #{clientid,jdbcType=VARCHAR},
-      </if>
-      <if test="resourceids != null" >
-        #{resourceids,jdbcType=VARCHAR},
-      </if>
-      <if test="secretrequired != null" >
-        #{secretrequired,jdbcType=BIT},
-      </if>
-      <if test="clientsecret != null" >
-        #{clientsecret,jdbcType=VARCHAR},
-      </if>
-      <if test="scoped != null" >
-        #{scoped,jdbcType=BIT},
-      </if>
-      <if test="scope != null" >
-        #{scope,jdbcType=VARCHAR},
-      </if>
-      <if test="authorizedgranttypes != null" >
-        #{authorizedgranttypes,jdbcType=VARCHAR},
-      </if>
-      <if test="registeredredirecturi != null" >
-        #{registeredredirecturi,jdbcType=VARCHAR},
-      </if>
-      <if test="accesstokenvalidityseconds != null" >
-        #{accesstokenvalidityseconds,jdbcType=INTEGER},
-      </if>
-      <if test="refreshtokenvalidityseconds != null" >
-        #{refreshtokenvalidityseconds,jdbcType=INTEGER},
-      </if>
-      <if test="autoapprove != null" >
-        #{autoapprove,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.zhiren.auth.po.AuthClient" >
-    update AuthClient
-    <set >
-      <if test="resourceids != null" >
-        ResourceIds = #{resourceids,jdbcType=VARCHAR},
-      </if>
-      <if test="secretrequired != null" >
-        SecretRequired = #{secretrequired,jdbcType=BIT},
-      </if>
-      <if test="clientsecret != null" >
-        ClientSecret = #{clientsecret,jdbcType=VARCHAR},
-      </if>
-      <if test="scoped != null" >
-        Scoped = #{scoped,jdbcType=BIT},
-      </if>
-      <if test="scope != null" >
-        Scope = #{scope,jdbcType=VARCHAR},
-      </if>
-      <if test="authorizedgranttypes != null" >
-        AuthorizedGrantTypes = #{authorizedgranttypes,jdbcType=VARCHAR},
-      </if>
-      <if test="registeredredirecturi != null" >
-        RegisteredRedirectUri = #{registeredredirecturi,jdbcType=VARCHAR},
-      </if>
-      <if test="accesstokenvalidityseconds != null" >
-        AccessTokenValiditySeconds = #{accesstokenvalidityseconds,jdbcType=INTEGER},
-      </if>
-      <if test="refreshtokenvalidityseconds != null" >
-        RefreshTokenValiditySeconds = #{refreshtokenvalidityseconds,jdbcType=INTEGER},
-      </if>
-      <if test="autoapprove != null" >
-        AutoApprove = #{autoapprove,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where ClientId = #{clientid,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="cn.zhiren.auth.po.AuthClient" >
-    update AuthClient
-    set ResourceIds = #{resourceids,jdbcType=VARCHAR},
-      SecretRequired = #{secretrequired,jdbcType=BIT},
-      ClientSecret = #{clientsecret,jdbcType=VARCHAR},
-      Scoped = #{scoped,jdbcType=BIT},
-      Scope = #{scope,jdbcType=VARCHAR},
-      AuthorizedGrantTypes = #{authorizedgranttypes,jdbcType=VARCHAR},
-      RegisteredRedirectUri = #{registeredredirecturi,jdbcType=VARCHAR},
-      AccessTokenValiditySeconds = #{accesstokenvalidityseconds,jdbcType=INTEGER},
-      RefreshTokenValiditySeconds = #{refreshtokenvalidityseconds,jdbcType=INTEGER},
-      AutoApprove = #{autoapprove,jdbcType=VARCHAR}
-    where ClientId = #{clientid,jdbcType=VARCHAR}
-  </update>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zhiren.auth.mapper.AuthClientMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.zhiren.auth.entity.AuthClient">
+        <id column="ClientId" property="ClientId" />
+        <result column="ResourceIds" property="ResourceIds" />
+        <result column="SecretRequired" property="SecretRequired" />
+        <result column="ClientSecret" property="ClientSecret" />
+        <result column="Scoped" property="Scoped" />
+        <result column="Scope" property="Scope" />
+        <result column="AuthorizedGrantTypes" property="AuthorizedGrantTypes" />
+        <result column="RegisteredRedirectUri" property="RegisteredRedirectUri" />
+        <result column="AccessTokenValiditySeconds" property="AccessTokenValiditySeconds" />
+        <result column="RefreshTokenValiditySeconds" property="RefreshTokenValiditySeconds" />
+        <result column="AutoApprove" property="AutoApprove" />
+        <result column="TenantID" property="TenantID" />
+    </resultMap>
+
 </mapper>

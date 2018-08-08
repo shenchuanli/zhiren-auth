@@ -1,82 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.zhiren.auth.mapper.AuthRoleMapper" >
-  <resultMap id="BaseResultMap" type="cn.zhiren.auth.po.AuthRole" >
-    <id column="RoleId" property="roleid" jdbcType="VARCHAR" />
-    <result column="RoleCode" property="rolecode" jdbcType="VARCHAR" />
-    <result column="RoleName" property="rolename" jdbcType="VARCHAR" />
-    <result column="IsEnabled" property="isenabled" jdbcType="BIT" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    RoleId, RoleCode, RoleName, IsEnabled
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from AuthRole
-    where RoleId = #{roleid,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from AuthRole
-    where RoleId = #{roleid,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="cn.zhiren.auth.po.AuthRole" >
-    insert into AuthRole (RoleId, RoleCode, RoleName, 
-      IsEnabled)
-    values (#{roleid,jdbcType=VARCHAR}, #{rolecode,jdbcType=VARCHAR}, #{rolename,jdbcType=VARCHAR}, 
-      #{isenabled,jdbcType=BIT})
-  </insert>
-  <insert id="insertSelective" parameterType="cn.zhiren.auth.po.AuthRole" >
-    insert into AuthRole
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="roleid != null" >
-        RoleId,
-      </if>
-      <if test="rolecode != null" >
-        RoleCode,
-      </if>
-      <if test="rolename != null" >
-        RoleName,
-      </if>
-      <if test="isenabled != null" >
-        IsEnabled,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="roleid != null" >
-        #{roleid,jdbcType=VARCHAR},
-      </if>
-      <if test="rolecode != null" >
-        #{rolecode,jdbcType=VARCHAR},
-      </if>
-      <if test="rolename != null" >
-        #{rolename,jdbcType=VARCHAR},
-      </if>
-      <if test="isenabled != null" >
-        #{isenabled,jdbcType=BIT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.zhiren.auth.po.AuthRole" >
-    update AuthRole
-    <set >
-      <if test="rolecode != null" >
-        RoleCode = #{rolecode,jdbcType=VARCHAR},
-      </if>
-      <if test="rolename != null" >
-        RoleName = #{rolename,jdbcType=VARCHAR},
-      </if>
-      <if test="isenabled != null" >
-        IsEnabled = #{isenabled,jdbcType=BIT},
-      </if>
-    </set>
-    where RoleId = #{roleid,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="cn.zhiren.auth.po.AuthRole" >
-    update AuthRole
-    set RoleCode = #{rolecode,jdbcType=VARCHAR},
-      RoleName = #{rolename,jdbcType=VARCHAR},
-      IsEnabled = #{isenabled,jdbcType=BIT}
-    where RoleId = #{roleid,jdbcType=VARCHAR}
-  </update>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zhiren.auth.mapper.AuthRoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.zhiren.auth.entity.AuthRole">
+        <id column="RoleId" property="RoleId" />
+        <result column="RoleCode" property="RoleCode" />
+        <result column="RoleName" property="RoleName" />
+        <result column="IsEnabled" property="IsEnabled" />
+        <result column="TenantID" property="TenantID" />
+    </resultMap>
+
 </mapper>

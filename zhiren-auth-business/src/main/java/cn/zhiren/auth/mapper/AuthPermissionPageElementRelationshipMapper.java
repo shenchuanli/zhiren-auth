@@ -1,17 +1,16 @@
 package cn.zhiren.auth.mapper;
 
-import cn.zhiren.auth.po.AuthPermissionPageElementRelationship;
+import cn.zhiren.auth.entity.AuthPermissionPageElementRelationship;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 
-public interface AuthPermissionPageElementRelationshipMapper {
-    int deleteByPrimaryKey(String permissionpageelementid);
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author Solley
+ * @since 2018-08-03
+ */
+public interface AuthPermissionPageElementRelationshipMapper extends BaseMapper<AuthPermissionPageElementRelationship> {
 
-    int insert(AuthPermissionPageElementRelationship record);
-
-    int insertSelective(AuthPermissionPageElementRelationship record);
-
-    AuthPermissionPageElementRelationship selectByPrimaryKey(String permissionpageelementid);
-
-    int updateByPrimaryKeySelective(AuthPermissionPageElementRelationship record);
-
-    int updateByPrimaryKey(AuthPermissionPageElementRelationship record);
 }

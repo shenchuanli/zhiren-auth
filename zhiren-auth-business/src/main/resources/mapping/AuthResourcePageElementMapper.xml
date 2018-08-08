@@ -1,71 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.zhiren.auth.mapper.AuthResourcePageElementMapper" >
-  <resultMap id="BaseResultMap" type="cn.zhiren.auth.po.AuthResourcePageElement" >
-    <id column="PageElement" property="pageelement" jdbcType="VARCHAR" />
-    <result column="ElementCode" property="elementcode" jdbcType="VARCHAR" />
-    <result column="ElementName" property="elementname" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    PageElement, ElementCode, ElementName
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from AuthResourcePageElement
-    where PageElement = #{pageelement,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from AuthResourcePageElement
-    where PageElement = #{pageelement,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="cn.zhiren.auth.po.AuthResourcePageElement" >
-    insert into AuthResourcePageElement (PageElement, ElementCode, ElementName
-      )
-    values (#{pageelement,jdbcType=VARCHAR}, #{elementcode,jdbcType=VARCHAR}, #{elementname,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="cn.zhiren.auth.po.AuthResourcePageElement" >
-    insert into AuthResourcePageElement
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="pageelement != null" >
-        PageElement,
-      </if>
-      <if test="elementcode != null" >
-        ElementCode,
-      </if>
-      <if test="elementname != null" >
-        ElementName,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="pageelement != null" >
-        #{pageelement,jdbcType=VARCHAR},
-      </if>
-      <if test="elementcode != null" >
-        #{elementcode,jdbcType=VARCHAR},
-      </if>
-      <if test="elementname != null" >
-        #{elementname,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.zhiren.auth.po.AuthResourcePageElement" >
-    update AuthResourcePageElement
-    <set >
-      <if test="elementcode != null" >
-        ElementCode = #{elementcode,jdbcType=VARCHAR},
-      </if>
-      <if test="elementname != null" >
-        ElementName = #{elementname,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where PageElement = #{pageelement,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="cn.zhiren.auth.po.AuthResourcePageElement" >
-    update AuthResourcePageElement
-    set ElementCode = #{elementcode,jdbcType=VARCHAR},
-      ElementName = #{elementname,jdbcType=VARCHAR}
-    where PageElement = #{pageelement,jdbcType=VARCHAR}
-  </update>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zhiren.auth.mapper.AuthResourcePageElementMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.zhiren.auth.entity.AuthResourcePageElement">
+        <id column="PageElementId" property="PageElementId" />
+        <result column="ElementCode" property="ElementCode" />
+        <result column="ElementName" property="ElementName" />
+        <result column="MenuId" property="MenuId" />
+        <result column="ElementType" property="ElementType" />
+    </resultMap>
+
 </mapper>

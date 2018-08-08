@@ -1,93 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.zhiren.auth.mapper.AuthResourceAPIMapper" >
-  <resultMap id="BaseResultMap" type="cn.zhiren.auth.po.AuthResourceAPI" >
-    <id column="APIId" property="apiid" jdbcType="VARCHAR" />
-    <result column="APIName" property="apiname" jdbcType="VARCHAR" />
-    <result column="APIURL" property="apiurl" jdbcType="VARCHAR" />
-    <result column="IsEnabled" property="isenabled" jdbcType="INTEGER" />
-    <result column="APIAuth" property="apiauth" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    APIId, APIName, APIURL, IsEnabled, APIAuth
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from AuthResourceAPI
-    where APIId = #{apiid,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from AuthResourceAPI
-    where APIId = #{apiid,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="cn.zhiren.auth.po.AuthResourceAPI" >
-    insert into AuthResourceAPI (APIId, APIName, APIURL, 
-      IsEnabled, APIAuth)
-    values (#{apiid,jdbcType=VARCHAR}, #{apiname,jdbcType=VARCHAR}, #{apiurl,jdbcType=VARCHAR}, 
-      #{isenabled,jdbcType=INTEGER}, #{apiauth,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="cn.zhiren.auth.po.AuthResourceAPI" >
-    insert into AuthResourceAPI
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="apiid != null" >
-        APIId,
-      </if>
-      <if test="apiname != null" >
-        APIName,
-      </if>
-      <if test="apiurl != null" >
-        APIURL,
-      </if>
-      <if test="isenabled != null" >
-        IsEnabled,
-      </if>
-      <if test="apiauth != null" >
-        APIAuth,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="apiid != null" >
-        #{apiid,jdbcType=VARCHAR},
-      </if>
-      <if test="apiname != null" >
-        #{apiname,jdbcType=VARCHAR},
-      </if>
-      <if test="apiurl != null" >
-        #{apiurl,jdbcType=VARCHAR},
-      </if>
-      <if test="isenabled != null" >
-        #{isenabled,jdbcType=INTEGER},
-      </if>
-      <if test="apiauth != null" >
-        #{apiauth,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.zhiren.auth.po.AuthResourceAPI" >
-    update AuthResourceAPI
-    <set >
-      <if test="apiname != null" >
-        APIName = #{apiname,jdbcType=VARCHAR},
-      </if>
-      <if test="apiurl != null" >
-        APIURL = #{apiurl,jdbcType=VARCHAR},
-      </if>
-      <if test="isenabled != null" >
-        IsEnabled = #{isenabled,jdbcType=INTEGER},
-      </if>
-      <if test="apiauth != null" >
-        APIAuth = #{apiauth,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where APIId = #{apiid,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="cn.zhiren.auth.po.AuthResourceAPI" >
-    update AuthResourceAPI
-    set APIName = #{apiname,jdbcType=VARCHAR},
-      APIURL = #{apiurl,jdbcType=VARCHAR},
-      IsEnabled = #{isenabled,jdbcType=INTEGER},
-      APIAuth = #{apiauth,jdbcType=VARCHAR}
-    where APIId = #{apiid,jdbcType=VARCHAR}
-  </update>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zhiren.auth.mapper.AuthResourceAPIMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.zhiren.auth.entity.AuthResourceAPI">
+        <id column="APIId" property="APIId" />
+        <result column="APIName" property="APIName" />
+        <result column="APIURL" property="APIURL" />
+        <result column="IsEnabled" property="IsEnabled" />
+        <result column="APIAuth" property="APIAuth" />
+    </resultMap>
+
 </mapper>

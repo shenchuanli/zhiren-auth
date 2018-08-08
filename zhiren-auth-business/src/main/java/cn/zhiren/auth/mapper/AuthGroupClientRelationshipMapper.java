@@ -1,17 +1,16 @@
 package cn.zhiren.auth.mapper;
 
-import cn.zhiren.auth.po.AuthGroupClientRelationship;
+import cn.zhiren.auth.entity.AuthGroupClientRelationship;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 
-public interface AuthGroupClientRelationshipMapper {
-    int deleteByPrimaryKey(String groupclientid);
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author Solley
+ * @since 2018-08-03
+ */
+public interface AuthGroupClientRelationshipMapper extends BaseMapper<AuthGroupClientRelationship> {
 
-    int insert(AuthGroupClientRelationship record);
-
-    int insertSelective(AuthGroupClientRelationship record);
-
-    AuthGroupClientRelationship selectByPrimaryKey(String groupclientid);
-
-    int updateByPrimaryKeySelective(AuthGroupClientRelationship record);
-
-    int updateByPrimaryKey(AuthGroupClientRelationship record);
 }

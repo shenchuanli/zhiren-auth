@@ -1,71 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.zhiren.auth.mapper.AuthPermissionPageElementRelationshipMapper" >
-  <resultMap id="BaseResultMap" type="cn.zhiren.auth.po.AuthPermissionPageElementRelationship" >
-    <id column="PermissionPageElementId" property="permissionpageelementid" jdbcType="VARCHAR" />
-    <result column="PermissionId" property="permissionid" jdbcType="VARCHAR" />
-    <result column="PageElementId" property="pageelementid" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    PermissionPageElementId, PermissionId, PageElementId
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from AuthPermissionPageElementRelationship
-    where PermissionPageElementId = #{permissionpageelementid,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from AuthPermissionPageElementRelationship
-    where PermissionPageElementId = #{permissionpageelementid,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="cn.zhiren.auth.po.AuthPermissionPageElementRelationship" >
-    insert into AuthPermissionPageElementRelationship (PermissionPageElementId, PermissionId, 
-      PageElementId)
-    values (#{permissionpageelementid,jdbcType=VARCHAR}, #{permissionid,jdbcType=VARCHAR}, 
-      #{pageelementid,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="cn.zhiren.auth.po.AuthPermissionPageElementRelationship" >
-    insert into AuthPermissionPageElementRelationship
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="permissionpageelementid != null" >
-        PermissionPageElementId,
-      </if>
-      <if test="permissionid != null" >
-        PermissionId,
-      </if>
-      <if test="pageelementid != null" >
-        PageElementId,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="permissionpageelementid != null" >
-        #{permissionpageelementid,jdbcType=VARCHAR},
-      </if>
-      <if test="permissionid != null" >
-        #{permissionid,jdbcType=VARCHAR},
-      </if>
-      <if test="pageelementid != null" >
-        #{pageelementid,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.zhiren.auth.po.AuthPermissionPageElementRelationship" >
-    update AuthPermissionPageElementRelationship
-    <set >
-      <if test="permissionid != null" >
-        PermissionId = #{permissionid,jdbcType=VARCHAR},
-      </if>
-      <if test="pageelementid != null" >
-        PageElementId = #{pageelementid,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where PermissionPageElementId = #{permissionpageelementid,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="cn.zhiren.auth.po.AuthPermissionPageElementRelationship" >
-    update AuthPermissionPageElementRelationship
-    set PermissionId = #{permissionid,jdbcType=VARCHAR},
-      PageElementId = #{pageelementid,jdbcType=VARCHAR}
-    where PermissionPageElementId = #{permissionpageelementid,jdbcType=VARCHAR}
-  </update>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zhiren.auth.mapper.AuthPermissionPageElementRelationshipMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.zhiren.auth.entity.AuthPermissionPageElementRelationship">
+        <id column="PermissionPageElementId" property="PermissionPageElementId" />
+        <result column="PageElementId" property="PageElementId" />
+        <result column="PermissionId" property="PermissionId" />
+    </resultMap>
+
 </mapper>

@@ -1,17 +1,16 @@
 package cn.zhiren.auth.mapper;
 
-import cn.zhiren.auth.po.AuthResourcePageElement;
+import cn.zhiren.auth.entity.AuthResourcePageElement;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 
-public interface AuthResourcePageElementMapper {
-    int deleteByPrimaryKey(String pageelement);
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author Solley
+ * @since 2018-08-03
+ */
+public interface AuthResourcePageElementMapper extends BaseMapper<AuthResourcePageElement> {
 
-    int insert(AuthResourcePageElement record);
-
-    int insertSelective(AuthResourcePageElement record);
-
-    AuthResourcePageElement selectByPrimaryKey(String pageelement);
-
-    int updateByPrimaryKeySelective(AuthResourcePageElement record);
-
-    int updateByPrimaryKey(AuthResourcePageElement record);
 }

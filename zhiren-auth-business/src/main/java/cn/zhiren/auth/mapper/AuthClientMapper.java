@@ -1,17 +1,16 @@
 package cn.zhiren.auth.mapper;
 
-import cn.zhiren.auth.po.AuthClient;
+import cn.zhiren.auth.entity.AuthClient;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 
-public interface AuthClientMapper {
-    int deleteByPrimaryKey(String clientid);
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author Solley
+ * @since 2018-08-03
+ */
+public interface AuthClientMapper extends BaseMapper<AuthClient> {
 
-    int insert(AuthClient record);
-
-    int insertSelective(AuthClient record);
-
-    AuthClient selectByPrimaryKey(String clientid);
-
-    int updateByPrimaryKeySelective(AuthClient record);
-
-    int updateByPrimaryKey(AuthClient record);
 }

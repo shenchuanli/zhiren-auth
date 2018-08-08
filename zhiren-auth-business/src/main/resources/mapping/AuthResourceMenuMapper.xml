@@ -1,117 +1,17 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.zhiren.auth.mapper.AuthResourceMenuMapper" >
-  <resultMap id="BaseResultMap" type="cn.zhiren.auth.po.AuthResourceMenu" >
-    <id column="MenuId" property="menuid" jdbcType="VARCHAR" />
-    <result column="ParentMenuId" property="parentmenuid" jdbcType="VARCHAR" />
-    <result column="MenuName" property="menuname" jdbcType="VARCHAR" />
-    <result column="MenuURL" property="menuurl" jdbcType="VARCHAR" />
-    <result column="IsEnabled" property="isenabled" jdbcType="INTEGER" />
-    <result column="ClientType" property="clienttype" jdbcType="INTEGER" />
-    <result column="OrderNo" property="orderno" jdbcType="INTEGER" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    MenuId, ParentMenuId, MenuName, MenuURL, IsEnabled, ClientType, OrderNo
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from AuthResourceMenu
-    where MenuId = #{menuid,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from AuthResourceMenu
-    where MenuId = #{menuid,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="cn.zhiren.auth.po.AuthResourceMenu" >
-    insert into AuthResourceMenu (MenuId, ParentMenuId, MenuName, 
-      MenuURL, IsEnabled, ClientType, 
-      OrderNo)
-    values (#{menuid,jdbcType=VARCHAR}, #{parentmenuid,jdbcType=VARCHAR}, #{menuname,jdbcType=VARCHAR}, 
-      #{menuurl,jdbcType=VARCHAR}, #{isenabled,jdbcType=INTEGER}, #{clienttype,jdbcType=INTEGER}, 
-      #{orderno,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="cn.zhiren.auth.po.AuthResourceMenu" >
-    insert into AuthResourceMenu
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="menuid != null" >
-        MenuId,
-      </if>
-      <if test="parentmenuid != null" >
-        ParentMenuId,
-      </if>
-      <if test="menuname != null" >
-        MenuName,
-      </if>
-      <if test="menuurl != null" >
-        MenuURL,
-      </if>
-      <if test="isenabled != null" >
-        IsEnabled,
-      </if>
-      <if test="clienttype != null" >
-        ClientType,
-      </if>
-      <if test="orderno != null" >
-        OrderNo,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="menuid != null" >
-        #{menuid,jdbcType=VARCHAR},
-      </if>
-      <if test="parentmenuid != null" >
-        #{parentmenuid,jdbcType=VARCHAR},
-      </if>
-      <if test="menuname != null" >
-        #{menuname,jdbcType=VARCHAR},
-      </if>
-      <if test="menuurl != null" >
-        #{menuurl,jdbcType=VARCHAR},
-      </if>
-      <if test="isenabled != null" >
-        #{isenabled,jdbcType=INTEGER},
-      </if>
-      <if test="clienttype != null" >
-        #{clienttype,jdbcType=INTEGER},
-      </if>
-      <if test="orderno != null" >
-        #{orderno,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.zhiren.auth.po.AuthResourceMenu" >
-    update AuthResourceMenu
-    <set >
-      <if test="parentmenuid != null" >
-        ParentMenuId = #{parentmenuid,jdbcType=VARCHAR},
-      </if>
-      <if test="menuname != null" >
-        MenuName = #{menuname,jdbcType=VARCHAR},
-      </if>
-      <if test="menuurl != null" >
-        MenuURL = #{menuurl,jdbcType=VARCHAR},
-      </if>
-      <if test="isenabled != null" >
-        IsEnabled = #{isenabled,jdbcType=INTEGER},
-      </if>
-      <if test="clienttype != null" >
-        ClientType = #{clienttype,jdbcType=INTEGER},
-      </if>
-      <if test="orderno != null" >
-        OrderNo = #{orderno,jdbcType=INTEGER},
-      </if>
-    </set>
-    where MenuId = #{menuid,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="cn.zhiren.auth.po.AuthResourceMenu" >
-    update AuthResourceMenu
-    set ParentMenuId = #{parentmenuid,jdbcType=VARCHAR},
-      MenuName = #{menuname,jdbcType=VARCHAR},
-      MenuURL = #{menuurl,jdbcType=VARCHAR},
-      IsEnabled = #{isenabled,jdbcType=INTEGER},
-      ClientType = #{clienttype,jdbcType=INTEGER},
-      OrderNo = #{orderno,jdbcType=INTEGER}
-    where MenuId = #{menuid,jdbcType=VARCHAR}
-  </update>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zhiren.auth.mapper.AuthResourceMenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.zhiren.auth.entity.AuthResourceMenu">
+        <id column="MenuId" property="MenuId" />
+        <result column="ParentMenuId" property="ParentMenuId" />
+        <result column="MenuName" property="MenuName" />
+        <result column="MenuURL" property="MenuURL" />
+        <result column="IsEnabled" property="IsEnabled" />
+        <result column="OrderNo" property="OrderNo" />
+        <result column="MenuType" property="MenuType" />
+        <result column="ProgramId" property="ProgramId" />
+    </resultMap>
+
 </mapper>

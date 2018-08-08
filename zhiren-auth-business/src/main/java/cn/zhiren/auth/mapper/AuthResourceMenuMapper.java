@@ -1,17 +1,16 @@
 package cn.zhiren.auth.mapper;
 
-import cn.zhiren.auth.po.AuthResourceMenu;
+import cn.zhiren.auth.entity.AuthResourceMenu;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 
-public interface AuthResourceMenuMapper {
-    int deleteByPrimaryKey(String menuid);
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author Solley
+ * @since 2018-08-03
+ */
+public interface AuthResourceMenuMapper extends BaseMapper<AuthResourceMenu> {
 
-    int insert(AuthResourceMenu record);
-
-    int insertSelective(AuthResourceMenu record);
-
-    AuthResourceMenu selectByPrimaryKey(String menuid);
-
-    int updateByPrimaryKeySelective(AuthResourceMenu record);
-
-    int updateByPrimaryKey(AuthResourceMenu record);
 }
