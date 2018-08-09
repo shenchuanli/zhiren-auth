@@ -24,8 +24,16 @@ public class AuthUser extends Model<AuthUser> {
     private String TenantID;
     private Integer TenanAdmin;
     private String Username;
+    private String Password;
     private String Displayname;
 
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
+    }
 
     public String getUserId() {
         return UserId;

@@ -19,7 +19,7 @@ import java.util.Enumeration;
 public class LoggerFilter {
     private Logger logger =  LoggerFactory.getLogger(this.getClass());
 
-    @Pointcut("execution(public * zhiren.auth.web.*.*(..))")
+    @Pointcut("execution(public * cn.zhiren.auth.controller.*.*(..))")
     public void webLog(){}
 
     @Before("webLog()")

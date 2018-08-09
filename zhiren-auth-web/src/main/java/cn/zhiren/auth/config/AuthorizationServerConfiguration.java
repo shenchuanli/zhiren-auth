@@ -2,6 +2,10 @@ package cn.zhiren.auth.config;
 
 import cn.zhiren.auth.auth.ClientDetailAuthentication;
 import cn.zhiren.auth.auth.UserDetailsAuthentication;
+import cn.zhiren.auth.entity.AuthUser;
+import cn.zhiren.auth.service.IAuthUserService;
+import cn.zhiren.core.BaseCommon.CommonConstants;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -97,12 +101,20 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Override
     public void configure(final AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         // @formatter:off
-        endpoints.authenticationManager(authenticationManager).userDetailsService(userDetailsAuthentication)
-                .accessTokenConverter(accessTokenConverter())
-                .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
-               // .accessTokenConverter(accessTokenConverter());
-        // @formatter:on
+        endpoints.authenticationManager(authenticationManager);
+        endpoints.userDetailsService(userDetailsAuthentication);
+        endpoints.allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
         endpoints.tokenStore(tokenStore());
+
+        TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
+        List<TokenEnhancer> enhancerList = new ArrayList<>();
+        enhancerList.add(jwtTokenEnhancer());
+        enhancerList.add(accessTokenConverter());
+        enhancerChain.setTokenEnhancers(enhancerList);
+
+        endpoints.tokenEnhancer(enhancerChain)
+                .accessTokenConverter(accessTokenConverter());
+
     }
 
     /**
@@ -117,22 +129,29 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         return tokenStore;
     }
 
+    /**
+     * create by: Solley
+     * description:token 转jwt
+     * create time: 16:27 2018/8/9
+     *  * @Param: null
+     * @return 
+     */
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
-        JwtAccessTokenConverter converter = new JwtAccessTokenConverter() {
-            @Override
-            public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
-                String userName = authentication.getUserAuthentication().getName();
-                User user = (User) authentication.getUserAuthentication().getPrincipal();
-                Map<String,Object> infoMap = new HashMap<>();
-                infoMap.put("userName",userName);
-                infoMap.put("roles",user.getAuthorities());
-                ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(infoMap);
-                OAuth2AccessToken token = super.enhance(accessToken, authentication);
-                return token;
-            }
-        };
-        converter.setSigningKey("zhiren123");
-        return converter;
+        JwtAccessTokenConverter accessTokenConverter = new JwtAccessTokenConverter();
+        accessTokenConverter.setSigningKey(CommonConstants.JWT_PUBLIC_KEY);
+        return accessTokenConverter;
+    }
+
+    /**
+     * create by: Solley
+     * description:给jwt添加自己的内容
+     * create time: 16:28 2018/8/9
+     *  * @Param: null
+     * @return 
+     */
+    @Bean
+    public TokenEnhancer jwtTokenEnhancer(){
+        return new JwtTokenEnhancer();
     }
 }

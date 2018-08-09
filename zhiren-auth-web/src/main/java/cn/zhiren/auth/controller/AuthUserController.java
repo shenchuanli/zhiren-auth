@@ -25,10 +25,8 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "用户模块", description = "用户模块相关接口")
 @RestController
 @RequestMapping("/authUser")
-public class AuthUserController extends BaseController<AuthUserServiceImpl,AuthUser> {
+public class AuthUserController extends BaseController<IAuthUserService,AuthUser> {
 
-    @Autowired
-    IAuthUserService iAuthUserService;
 //    public BaseRespDTO<AuthUser> getAuthUser(){
 //
 //    }

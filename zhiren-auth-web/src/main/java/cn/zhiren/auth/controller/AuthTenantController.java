@@ -34,17 +34,8 @@ import java.util.UUID;
 @Api(value = "租户模块", description = "租户模块相关接口")
 @RestController
 @RequestMapping("/authTenant")
-@Secured({"ROLE_AUTH_TENANT"})
+@Secured({"ROLE_AUTH_COMMON"})
 public class AuthTenantController extends BaseController<IAuthTenantService,AuthTenant> {
-    /**
-     * create by: Solley
-     * description:服务
-     * create time: 9:45 2018/8/8
-     *  * @Param: null
-     * @return 
-     */
-    @Autowired
-    private IAuthTenantService iAuthTenantService;
 
     /**
      * 根据名称或编码查询租户
@@ -56,12 +47,14 @@ public class AuthTenantController extends BaseController<IAuthTenantService,Auth
     public BaseRespDTO<Page<AuthTenant>> getAuthTenant(@RequestParam String tenantName,
                                                        @RequestParam Integer pageIndex,
                                                        @RequestParam Integer PageSize){
-
+        System.out.println("用户信息：");
         System.out.println(getCurrentUserName());
+        System.out.println(getCurrentTenantID());
+        System.out.println(getCurrentUserID());
         EntityWrapper<AuthTenant> ew = new EntityWrapper<AuthTenant>();
         ew.where("TenantName={0}",tenantName);
         Page<AuthTenant> pg = new Page<>(pageIndex,PageSize);
-        Page<AuthTenant> authTenantPage = iAuthTenantService.selectPage(pg, ew);
+        Page<AuthTenant> authTenantPage = service.selectPage(pg, ew);
         return new BaseRespDTO(ResultStatus.SUCCESS.getResultStatus(),"ok",authTenantPage);
     }
 
@@ -77,7 +70,7 @@ public class AuthTenantController extends BaseController<IAuthTenantService,Auth
         }
 
         System.out.println(authTenantEntityWrapper.getSqlSegment());
-        Boolean ret = iAuthTenantService.delete(authTenantEntityWrapper);
+        Boolean ret = service.delete(authTenantEntityWrapper);
         if(ret){
             return new BaseRespDTO(ResultStatus.SUCCESS.getResultStatus(),"SUCCESS",null);
         }
